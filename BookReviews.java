@@ -1,44 +1,56 @@
+import java.util.ArrayList;
 import java.util.List;
 
-public class BookReviews {
-    static class Book {
-        String title;
-        int rating;
-        String review;
+public class StudentProjects {
+    static class Project {
+        String studentName;
+        int dueDate;
+        int completionDate;
 
-        Book(String title, int rating, String review) {
-            this.title = title;
-            this.rating = rating;
-            this.review = review;
+        Project(String name, int due, int complete) {
+            studentName = name;
+            dueDate = due;
+            completionDate = complete;
         }
 
-        boolean isPositive() {
-            return review.contains("good") || review.contains("excellent");
+        boolean isOnTime() {
+            return completionDate == dueDate;
         }
 
-        boolean isNeutral() {
-            return review.contains("average") || review.contains("fair");
+        boolean isEarly() {
+            return completionDate < dueDate;
         }
 
-        boolean isNegative() {
-            return review.contains("bad") || review.contains("poor");
+        boolean isLate() {
+            return completionDate > dueDate;
+        }
+
+        int completionTime() {
+            return Math.abs(completionDate - dueDate);
         }
     }
 
-    public static void analyzeReviews(List<Book> books) {
-        int positive = 0, neutral = 0, negative = 0;
-        int[] ratingRanges = new int[10]; // Assuming 1-10 rating scale
-
-        for (Book book : books) {
-            if (book.isPositive()) positive++;
-            if (book.isNeutral()) neutral++;
-            if (book.isNegative()) negative++;
-            ratingRanges[book.rating - 1]++;
+    public static void analyzeProjects(List<Project> projects) {
+        int onTime = 0, early = 0, late = 0, totalTime = 0;
+        for (Project p : projects) {
+            if (p.isOnTime()) onTime++;
+            if (p.isEarly()) early++;
+            if (p.isLate()) late++;
+            totalTime += p.completionTime();
         }
+        double averageTime = projects.isEmpty() ? 0 : (double) totalTime / projects.size();
+        System.out.println("On Time: " + onTime + ", Early: " + early + ", Late: " + late);
+        System.out.println("Average Completion Time: " + averageTime);
+    }
 
-        System.out.println("Positive: " + positive + ", Neutral: " + neutral + ", Negative: " + negative);
-        for (int i = 0; i < ratingRanges.length; i++) {
-            System.out.println("Rating " + (i + 1) + ": " + ratingRanges[i]);
-        }
+    public static void main(String[] args) {
+        // Example list of projects
+        List<Project> projects = new ArrayList<>();
+        projects.add(new Project("Alice", 5, 5)); // on time
+        projects.add(new Project("Bob", 5, 4)); // early
+        projects.add(new Project("Charlie", 5, 6)); // late
+
+        // Analyze the projects
+        analyzeProjects(projects);
     }
 }
