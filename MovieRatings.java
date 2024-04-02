@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,5 +29,16 @@ public class MovieRatings {
             double averageRating = totalRatingByCategory.get(category) / countByCategory.get(category);
             System.out.println(category + ": Count = " + countByCategory.get(category) + ", Average Rating = " + averageRating);
         }
+    }
+
+    public static void main(String[] args) {
+        // Example list of movies
+        List<Movie> movies = new ArrayList<>();
+        movies.add(new Movie("Movie1", "PG", 7.5));
+        movies.add(new Movie("Movie2", "PG-13", 8.0));
+        movies.add(new Movie("Movie3", "R", 9.0));
+
+        // Analyze the movie ratings
+        analyzeRatings(movies);
     }
 }
