@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,5 +16,16 @@ public class TestScores {
 
         System.out.println("Above Average: " + aboveAverage + ", At Average: " + atAverage + ", Below Average: " + belowAverage);
         System.out.println("Median Score: " + median);
+    }
+
+    public static void main(String[] args) {
+        // Example list of test scores
+        List<Integer> scores = new ArrayList<>();
+        scores.add(85);
+        scores.add(92);
+        scores.add(88);
+
+        // Analyze the test scores
+        analyzeScores(scores);
     }
 }
