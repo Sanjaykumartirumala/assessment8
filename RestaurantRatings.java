@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,5 +28,16 @@ public class RestaurantRatings {
             double averageRating = totalRatingByRange.get(range) / countByRange.get(range);
             System.out.println("Rating Range " + (range * 5 + 1) + "-" + ((range + 1) * 5) + ": Count = " + countByRange.get(range) + ", Average Rating = " + averageRating);
         }
+    }
+
+    public static void main(String[] args) {
+        // Example list of restaurant ratings
+        List<Restaurant> restaurants = new ArrayList<>();
+        restaurants.add(new Restaurant("Restaurant1", 8));
+        restaurants.add(new Restaurant("Restaurant2", 5));
+        restaurants.add(new Restaurant("Restaurant3", 7));
+
+        // Analyze the restaurant ratings
+        analyzeRatings(restaurants);
     }
 }
